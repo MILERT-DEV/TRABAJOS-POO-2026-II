@@ -7,9 +7,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import pe.edu.upeu.systurismo.components.ColumnInfo;
+import pe.edu.upeu.systurismo.dto.PersonaDto;
 import pe.edu.upeu.systurismo.enums.TipoDocumento;
 import pe.edu.upeu.systurismo.model.Turista;
 import pe.edu.upeu.systurismo.service.ITuristaService;
+import pe.edu.upeu.systurismo.utils.DniAutocompletador;
 import pe.edu.upeu.systurismo.utils.FxUtil;
 
 public class TuristaController extends CrudBaseController<Turista, Long> {
@@ -21,6 +23,8 @@ public class TuristaController extends CrudBaseController<Turista, Long> {
     @FXML private TextField txtEmail;
     @FXML private TextField txtTelefono;
     @FXML private TextField txtNacionalidad;
+
+    private DniAutocompletador autocompletadorDni;
 
     public TuristaController(ITuristaService servicio) {
         super(servicio);
@@ -53,6 +57,23 @@ public class TuristaController extends CrudBaseController<Turista, Long> {
         FxUtil.limitarLongitud(txtEmail, 80);
         FxUtil.soloDigitos(txtTelefono, 15);
         FxUtil.limitarLongitud(txtNacionalidad, 40);
+
+        // Autocompleta nombres y apellidos al escribir un DNI de 8 dígitos
+        autocompletadorDni = new DniAutocompletador(
+                txtNroDocumento,
+                () -> cbxTipoDocumento.getValue() == TipoDocumento.DNI,
+                this::completarDesdeDni,
+                this::mostrarMensaje);
+        cbxTipoDocumento.valueProperty().addListener((obs, ant, nuevo) -> autocompletadorDni.buscar());
+    }
+
+    private void completarDesdeDni(PersonaDto persona) {
+        txtNombres.setText(persona.getNombre());
+        txtApellidos.setText(persona.getApellidos());
+        if (txtNacionalidad.getText() == null || txtNacionalidad.getText().isBlank()) {
+            txtNacionalidad.setText("Peruana");
+        }
+        txtEmail.requestFocus(); // lo siguiente que falta escribir
     }
 
     @Override
@@ -83,8 +104,10 @@ public class TuristaController extends CrudBaseController<Turista, Long> {
 
     @Override
     protected void cargarFormulario(Turista e) {
-        cbxTipoDocumento.setValue(e.getTipoDocumento());
-        txtNroDocumento.setText(e.getNroDocumento());
+        autocompletadorDni.sinConsultar(() -> {
+            cbxTipoDocumento.setValue(e.getTipoDocumento());
+            txtNroDocumento.setText(e.getNroDocumento());
+        });
         txtNombres.setText(e.getNombres());
         txtApellidos.setText(e.getApellidos());
         txtEmail.setText(e.getEmail());

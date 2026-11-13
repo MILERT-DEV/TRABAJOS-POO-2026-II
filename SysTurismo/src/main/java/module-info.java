@@ -4,6 +4,7 @@ module pe.edu.upeu.systurismo {
 
     requires static lombok;
     requires jakarta.validation;
+    requires org.jsoup;
 
     requires java.sql;
     requires java.naming;

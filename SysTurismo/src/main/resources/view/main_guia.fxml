@@ -37,7 +37,7 @@
             <HBox spacing="10">
               <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <Label text="DNI" styleClass="campo-label"/>
-                <TextField fx:id="txtDni" promptText="8 dígitos" styleClass="campo"/>
+                <TextField fx:id="txtDni" promptText="8 dígitos (autocompleta)" styleClass="campo"/>
               </VBox>
               <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <Label text="Celular" styleClass="campo-label"/>

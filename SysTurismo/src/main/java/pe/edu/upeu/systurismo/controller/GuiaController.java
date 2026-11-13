@@ -7,9 +7,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import pe.edu.upeu.systurismo.components.ColumnInfo;
+import pe.edu.upeu.systurismo.dto.PersonaDto;
 import pe.edu.upeu.systurismo.enums.EstadoRegistro;
 import pe.edu.upeu.systurismo.model.Guia;
 import pe.edu.upeu.systurismo.service.IGuiaService;
+import pe.edu.upeu.systurismo.utils.DniAutocompletador;
 import pe.edu.upeu.systurismo.utils.FxUtil;
 
 public class GuiaController extends CrudBaseController<Guia, Long> {
@@ -20,6 +22,8 @@ public class GuiaController extends CrudBaseController<Guia, Long> {
     @FXML private TextField txtEmail;
     @FXML private TextField txtIdiomas;
     @FXML private ComboBox<EstadoRegistro> cbxEstado;
+
+    private DniAutocompletador autocompletadorDni;
 
     public GuiaController(IGuiaService servicio) {
         super(servicio);
@@ -50,6 +54,19 @@ public class GuiaController extends CrudBaseController<Guia, Long> {
         FxUtil.limitarLongitud(txtEmail, 80);
         FxUtil.limitarLongitud(txtIdiomas, 100);
         cbxEstado.getItems().setAll(EstadoRegistro.values());
+
+        // Al escribir el DNI se completa el nombre del guía
+        autocompletadorDni = new DniAutocompletador(
+                txtDni,
+                () -> true,
+                this::completarDesdeDni,
+                this::mostrarMensaje);
+    }
+
+    private void completarDesdeDni(PersonaDto persona) {
+        String completo = (persona.getNombre() + " " + persona.getApellidos()).trim();
+        txtNombres.setText(completo.length() > 80 ? completo.substring(0, 80) : completo);
+        txtTelefono.requestFocus();
     }
 
     @Override
@@ -79,7 +96,7 @@ public class GuiaController extends CrudBaseController<Guia, Long> {
     @Override
     protected void cargarFormulario(Guia e) {
         txtNombres.setText(e.getNombres());
-        txtDni.setText(e.getDni());
+        autocompletadorDni.sinConsultar(() -> txtDni.setText(e.getDni()));
         txtTelefono.setText(e.getTelefono());
         txtEmail.setText(e.getEmail());
         txtIdiomas.setText(e.getIdiomas());
