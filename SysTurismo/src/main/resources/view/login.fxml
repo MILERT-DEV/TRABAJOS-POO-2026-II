@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox prefHeight="540.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.systurismo.controller.LoginController">
+   <children>
+      <!-- Panel de marca -->
+      <VBox alignment="CENTER_LEFT" spacing="14" styleClass="login-marca" prefWidth="440" minWidth="440">
+         <padding><Insets top="40" right="44" bottom="40" left="44"/></padding>
+         <children>
+            <Label text="✈" styleClass="login-logo"/>
+            <Label text="SysTurismo" styleClass="login-titulo"/>
+            <Label text="Gestión de reservas, paquetes y turistas para tu agencia de viajes." wrapText="true" styleClass="login-subtitulo"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Label text="Valle del Colca · Machu Picchu · Titicaca" styleClass="login-pie"/>
+         </children>
+      </VBox>
+
+      <!-- Formulario -->
+      <VBox alignment="CENTER" styleClass="login-panel" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER_LEFT" spacing="12" maxWidth="320">
+               <children>
+                  <Label text="Iniciar sesión" styleClass="login-bienvenida"/>
+                  <Label text="Ingrese con su usuario y contraseña" styleClass="subtitulo-vista"/>
+                  <Label text="Usuario" styleClass="campo-label">
+                     <VBox.margin><Insets top="10"/></VBox.margin>
+                  </Label>
+                  <TextField fx:id="txtUsuario" promptText="Su usuario" styleClass="campo"/>
+                  <Label text="Contraseña" styleClass="campo-label"/>
+                  <PasswordField fx:id="txtClave" promptText="Su contraseña" styleClass="campo"/>
+                  <Label fx:id="lblError" visible="false" managed="false" wrapText="true" styleClass="msg-error"/>
+                  <Button fx:id="btnIngresar" text="Ingresar" onAction="#login" defaultButton="true"
+                          styleClass="btn, btn-primary" maxWidth="1.7976931348623157E308">
+                     <VBox.margin><Insets top="10"/></VBox.margin>
+                  </Button>
+                  <Button text="Salir" onAction="#salir" styleClass="btn, btn-light" maxWidth="1.7976931348623157E308"/>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

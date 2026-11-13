@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" styleClass="vista" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.systurismo.controller.TuristaController">
+   <children>
+      <HBox alignment="CENTER_LEFT" spacing="12">
+         <children>
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Turistas" styleClass="titulo-vista"/>
+                  <Label text="Clientes que reservan los paquetes de la agencia." styleClass="subtitulo-vista"/>
+               </children>
+            </VBox>
+            <Button text="+ Nuevo" onAction="#nuevo" styleClass="btn, btn-primary"/>
+         </children>
+      </HBox>
+
+      <HBox spacing="16" VBox.vgrow="ALWAYS">
+         <children>
+            <!-- Formulario -->
+            <VBox spacing="12" styleClass="card" minWidth="380" prefWidth="380" maxWidth="380">
+               <children>
+                  <Label fx:id="lblFormTitulo" text="Nuevo" styleClass="card-titulo"/>
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-limpio" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox spacing="12">
+                           <padding><Insets right="8"/></padding>
+                           <children>
+            <HBox spacing="10">
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Tipo de documento" styleClass="campo-label"/>
+                <ComboBox fx:id="cbxTipoDocumento" promptText="Seleccione" maxWidth="1.7976931348623157E308" styleClass="campo"/>
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="N.º de documento" styleClass="campo-label"/>
+                <TextField fx:id="txtNroDocumento" promptText="Solo letras y números" styleClass="campo"/>
+              </VBox>
+            </HBox>
+            <HBox spacing="10">
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Nombres" styleClass="campo-label"/>
+                <TextField fx:id="txtNombres" promptText="Nombres" styleClass="campo"/>
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Apellidos" styleClass="campo-label"/>
+                <TextField fx:id="txtApellidos" promptText="Apellidos" styleClass="campo"/>
+              </VBox>
+            </HBox>
+            <VBox spacing="4">
+                <Label text="Correo electrónico" styleClass="campo-label"/>
+                <TextField fx:id="txtEmail" promptText="nombre@correo.com" styleClass="campo"/>
+              </VBox>
+            <HBox spacing="10">
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Teléfono" styleClass="campo-label"/>
+                <TextField fx:id="txtTelefono" promptText="Solo números" styleClass="campo"/>
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Nacionalidad" styleClass="campo-label"/>
+                <TextField fx:id="txtNacionalidad" promptText="Ej. Peruana" styleClass="campo"/>
+              </VBox>
+            </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="lbnMsg" wrapText="true"/>
+                  <HBox spacing="10">
+                     <children>
+                        <Button text="Guardar" onAction="#guardar" styleClass="btn, btn-primary" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                        <Button text="Cancelar" onAction="#cancelar" styleClass="btn, btn-light" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Tabla -->
+            <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10">
+                     <children>
+                        <Label text="Listado" styleClass="card-titulo"/>
+                        <TextField fx:id="txtBuscar" promptText="Buscar..." styleClass="campo-busqueda" HBox.hgrow="ALWAYS"/>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableView" styleClass="tabla" VBox.vgrow="ALWAYS"/>
+                  <HBox fx:id="boxPaginacion"/>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

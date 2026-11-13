@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" styleClass="vista" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.systurismo.controller.ReservaController">
+   <children>
+      <VBox spacing="2">
+         <children>
+            <Label text="Reservas" styleClass="titulo-vista"/>
+            <Label text="Registre una reserva con su adelanto. Se confirma al pagar el 30% del total." styleClass="subtitulo-vista"/>
+         </children>
+      </VBox>
+
+      <HBox spacing="16" VBox.vgrow="ALWAYS">
+         <children>
+            <!-- Formulario -->
+            <VBox spacing="12" styleClass="card" minWidth="380" prefWidth="380" maxWidth="380">
+               <children>
+                  <Label text="Nueva reserva" styleClass="card-titulo"/>
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-limpio" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox spacing="12">
+                           <padding><Insets right="8"/></padding>
+                           <children>
+                              <VBox spacing="4">
+                                 <children>
+                                    <Label text="Turista" styleClass="campo-label"/>
+                                    <ComboBox fx:id="cbxTurista" promptText="Seleccione un turista" maxWidth="1.7976931348623157E308" styleClass="campo"/>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4">
+                                 <children>
+                                    <Label text="Paquete" styleClass="campo-label"/>
+                                    <ComboBox fx:id="cbxPaquete" promptText="Seleccione un paquete" maxWidth="1.7976931348623157E308" styleClass="campo"/>
+                                 </children>
+                              </VBox>
+                              <HBox spacing="10">
+                                 <children>
+                                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Fecha de viaje" styleClass="campo-label"/>
+                                          <DatePicker fx:id="dpFechaViaje" promptText="dd/mm/aaaa" maxWidth="1.7976931348623157E308" styleClass="campo"/>
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="4" prefWidth="110">
+                                       <children>
+                                          <Label text="Personas" styleClass="campo-label"/>
+                                          <TextField fx:id="txtPersonas" promptText="1" styleClass="campo"/>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="lblResumen" wrapText="true" styleClass="resumen"/>
+                              <HBox spacing="10">
+                                 <children>
+                                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Adelanto (S/)" styleClass="campo-label"/>
+                                          <TextField fx:id="txtAdelanto" promptText="0.00" styleClass="campo"/>
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Método de pago" styleClass="campo-label"/>
+                                          <ComboBox fx:id="cbxMetodo" promptText="Seleccione" maxWidth="1.7976931348623157E308" styleClass="campo"/>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="lbnMsg" wrapText="true"/>
+                  <HBox spacing="10">
+                     <children>
+                        <Button text="Reservar" onAction="#reservar" styleClass="btn, btn-primary" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                        <Button text="Limpiar" onAction="#limpiarFormulario" styleClass="btn, btn-light" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Tabla -->
+            <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10">
+                     <children>
+                        <Label text="Listado" styleClass="card-titulo"/>
+                        <TextField fx:id="txtBuscar" promptText="Buscar por turista, documento o paquete..." styleClass="campo-busqueda" HBox.hgrow="ALWAYS"/>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableView" styleClass="tabla" VBox.vgrow="ALWAYS"/>
+                  <HBox fx:id="boxPaginacion"/>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

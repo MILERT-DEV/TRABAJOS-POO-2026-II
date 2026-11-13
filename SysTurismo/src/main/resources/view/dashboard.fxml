@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" styleClass="vista" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.systurismo.controller.DashboardController">
+   <children>
+      <VBox spacing="2">
+         <children>
+            <Label text="Panel de control" styleClass="titulo-vista"/>
+            <Label fx:id="lblBienvenida" text="" styleClass="subtitulo-vista"/>
+         </children>
+      </VBox>
+
+      <HBox spacing="16">
+         <children>
+            <VBox styleClass="kpi, kpi-teal" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="lblTuristas" text="0" styleClass="kpi-valor"/>
+                  <Label text="Turistas registrados" styleClass="kpi-texto"/>
+               </children>
+            </VBox>
+            <VBox styleClass="kpi, kpi-naranja" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="lblPaquetes" text="0" styleClass="kpi-valor"/>
+                  <Label text="Paquetes activos" styleClass="kpi-texto"/>
+               </children>
+            </VBox>
+            <VBox styleClass="kpi, kpi-azul" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="lblReservasMes" text="0" styleClass="kpi-valor"/>
+                  <Label text="Reservas del mes" styleClass="kpi-texto"/>
+               </children>
+            </VBox>
+            <VBox styleClass="kpi, kpi-verde" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="lblIngresos" text="S/ 0.00" styleClass="kpi-valor"/>
+                  <Label text="Ingresos cobrados" styleClass="kpi-texto"/>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+
+      <HBox spacing="16" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS" prefWidth="320">
+               <children>
+                  <Label text="Reservas por estado" styleClass="card-titulo"/>
+                  <PieChart fx:id="chartEstados" legendSide="BOTTOM" labelsVisible="false" VBox.vgrow="ALWAYS"/>
+               </children>
+            </VBox>
+            <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS" prefWidth="420">
+               <children>
+                  <Label text="Ingresos por paquete (S/)" styleClass="card-titulo"/>
+                  <BarChart fx:id="chartIngresos" barGap="4" categoryGap="18" VBox.vgrow="ALWAYS">
+                     <xAxis><CategoryAxis side="BOTTOM"/></xAxis>
+                     <yAxis><NumberAxis side="LEFT"/></yAxis>
+                  </BarChart>
+               </children>
+            </VBox>
+            <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS" prefWidth="360">
+               <children>
+                  <Label text="Próximas salidas" styleClass="card-titulo"/>
+                  <TableView fx:id="tblSalidas" styleClass="tabla" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colFecha" text="Fecha"/>
+                        <TableColumn fx:id="colPaquete" text="Paquete"/>
+                        <TableColumn fx:id="colPersonas" text="Personas"/>
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

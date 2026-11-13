@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="raiz" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.systurismo.controller.MainGuiController">
+   <left>
+      <VBox styleClass="sidebar" prefWidth="240" minWidth="240" spacing="6">
+         <padding><Insets top="22" right="14" bottom="18" left="14"/></padding>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+               <padding><Insets bottom="18" left="6"/></padding>
+               <children>
+                  <Label text="✈" styleClass="sidebar-logo"/>
+                  <Label text="SysTurismo" styleClass="sidebar-marca"/>
+               </children>
+            </HBox>
+            <Label text="MENÚ" styleClass="sidebar-seccion"/>
+            <VBox fx:id="navegacion" spacing="4"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="sidebar-usuario">
+               <children>
+                  <Label fx:id="lblIniciales" text="U" styleClass="avatar"/>
+                  <VBox spacing="1" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="lblUsuario" text="Usuario" styleClass="sidebar-nombre"/>
+                        <Label fx:id="lblPerfil" text="Perfil" styleClass="sidebar-perfil"/>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button text="Cerrar sesión" onAction="#cerrarSesion" styleClass="btn-sidebar-salir" maxWidth="1.7976931348623157E308"/>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox alignment="CENTER_LEFT" styleClass="topbar">
+         <children>
+            <Label fx:id="lblTituloModulo" text="Inicio" styleClass="topbar-titulo"/>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <StackPane fx:id="contenido" styleClass="contenido"/>
+   </center>
+</BorderPane>
